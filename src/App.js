@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { swaggerUrls } from "./static/swaggerUrls.js";
+import Iframe from "./Iframe.js";
+import './App.css'
 
 function App() {
+  const [services, setServices] = useState([]);
+  const [swaggerUrl, setSwaggerUrl] = useState(() => swaggerUrls["Workspace"]);
+ 
+
+  useEffect(() => {
+    setServices(Object.keys(swaggerUrls));
+  }, []);
+
+  const loadSwagger = (val) => {
+    
+    setSwaggerUrl(val);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+  <div className="navbar">
+  <h1 className="title">SAFELINC</h1>
+  </div>
+    <div className="swagger-ui">
+      <div className="sidebar">
+     <div className="serviceHeader">
+     <h1 >Services</h1>
+     </div>
+        {services &&
+          services.map &&
+          services.map((value, key) => {
+            return (
+              <div key={key}>
+                <p
+                  className="serviceButtons"
+                  onClick={() => loadSwagger(swaggerUrls[value])}
+                >
+                  {value}
+                </p>
+              </div>
+            );
+          })}
+      </div>
+
+     
+     <Iframe swaggerUrl={swaggerUrl}/>
+     
     </div>
+    </>
   );
 }
 
