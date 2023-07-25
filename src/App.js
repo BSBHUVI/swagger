@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { swaggerUrls } from "./static/swaggerUrls.js";
 import Iframe from "./Iframe.js";
 import './App.css'
+import logo from './static/logo.png'
+import jciLogo from './static/jciLogo.png'
 
 function App() {
   const [services, setServices] = useState([]);
   const [swaggerUrl, setSwaggerUrl] = useState(() => swaggerUrls["Workspace"]);
- 
-
   useEffect(() => {
     setServices(Object.keys(swaggerUrls));
   }, []);
@@ -19,7 +19,13 @@ function App() {
   return (
     <>
   <div className="navbar">
-  <h1 className="title">SAFELINC</h1>
+  <div className="jci">
+<img src={jciLogo} alt="logo" />
+  </div>
+  <div className="logo">
+<img src={logo} alt="logo" />
+  </div>
+  <div></div>
   </div>
     <div className="swagger-ui">
       <div className="sidebar">
@@ -32,8 +38,8 @@ function App() {
             return (
               <div key={key}>
                 <p
-                  className="serviceButtons"
-                  onClick={() => loadSwagger(swaggerUrls[value])}
+                  className={` ${swaggerUrls[value]===swaggerUrl?"active":"NotActive"}`} 
+                  onClick={(e) =>{loadSwagger(swaggerUrls[value])}}
                 >
                   {value}
                 </p>
@@ -46,6 +52,7 @@ function App() {
      <Iframe swaggerUrl={swaggerUrl}/>
      
     </div>
+ 
     </>
   );
 }

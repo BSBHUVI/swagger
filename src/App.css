@@ -5,14 +5,14 @@
 
   flex-wrap: wrap;
 }
-.serviceButtons {
+.NotActive,.active {
   cursor: pointer;
   padding: 0.3rem 0.7rem;
   width: fit-content;
  font-weight: 750;
 
 }
-.serviceButtons:hover{
+.NotActive:hover,.active:hover{
   
     background-color: rgba(128, 128, 128, 0.463);
     border-radius: 0.3rem;
@@ -33,21 +33,42 @@ iframe {
   height: 100%;
 }
 
-.title {
-  text-align: center;
+.jci>img{
+  margin-left: 5rem;
+}
+
+.logo,.jci{
+  width: 10rem;
+aspect-ratio: 4/1.2;
+  object-position: center;
+  object-fit: cover;
+}
+.logo > img,.jci>img{
+  width: 100%;
+  height: 100%;
+ 
+ 
 }
 .navbar {
   width: 100%;
   height: fit-content;
   padding: 0.3rem;
   border: 1px solid black;
-  margin-bottom: 0.5rem;
+display: flex;
+align-items: center;
+  position: sticky;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #85ea2d;
+  z-index: 1000;
 }
 
 .sidebar {
   flex: 0.2;
   padding: 0.2rem;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,13 +77,28 @@ iframe {
   height: 100vh;
   overflow-y: scroll;
   flex-wrap: wrap;
+  background-color: #1b1b1b;
+  color: white;
 }
+
+
+
+
 .serviceHeader{
     width: 100%;
  
-    border-bottom: 1px solid black;display: flex;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    display: flex;
     align-items: center;
     justify-content: center;
     height: fit-content;
     padding-bottom: 0.7rem;
+    z-index: 1;
+    background-color: #1b1b1b;
+  
+    color: white;
+}
+.active{
+  background-color: grey!important;
+  border-radius: 0.3rem;
 }
